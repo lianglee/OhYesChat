@@ -10,4 +10,4 @@
  */ 
 
 $OhYesChat->version = '02032014'
-$OhYesChat->release = '1.0'; 
+$OhYesChat->release = '1.1'; 
