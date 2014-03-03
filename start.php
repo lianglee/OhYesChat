@@ -102,6 +102,7 @@ function ohyeschat_page_handler($page){
         break;
 
         case 'newtab':
+		header('Content-Type: application/json'); 
 		if(empty($page[1])){
 		     exit;	
 		} 
@@ -110,13 +111,33 @@ function ohyeschat_page_handler($page){
 		      $_SESSION['ohyes_chat'][] = $page[1];
 		   }
 		}
-		    $friend = get_user($page[1]);
-		    echo elgg_view('ohyes/chat/selectfriend', array(
-													   'friend' => $friend
-													   ));
-			global $CONFIG;	
 			$login = elgg_get_logged_in_user_entity()->guid;
-            update_data("UPDATE {$CONFIG->dbprefix}ohyes_chat SET view='1' WHERE(sender='$page[1]' AND reciever='{$login}')");
+		    $friend = get_user($page[1]);
+			$messages = OhYesChat::getMessages($login, $page[1]);
+			foreach(array_reverse($messages) as $umessages){
+			  $icon = elgg_view("icon/default", array(
+														'entity' => get_user($umessages->sender), 
+														'size' => 'small',
+									));	
+			  $user_msgs[] = elgg_view('ohyes/chat/message-item', array(
+																			   'icon' => $icon,
+																			   'message' => $umessages->message
+																			   ));	
+			}
+		    $tab =  elgg_view('ohyes/chat/selectfriend', array(
+													   'friend' => $friend,
+													   ));
+			$messages = implode('', $user_msgs);
+			
+			echo json_encode(array(
+								   'tab' => $tab,
+								   'messages' => $messages
+								   ));
+
+			global $CONFIG;	
+            update_data("UPDATE {$CONFIG->dbprefix}ohyes_chat 
+						 SET view='1' WHERE(sender='$page[1]' 
+			             AND reciever='{$login}');");
         break;
 		
 		case 'action':
@@ -127,11 +148,7 @@ function ohyeschat_page_handler($page){
 			require_once("{$plugin}actions/send.php");
 		}
 		if($page[1] == 'refresh'){	
-			require_once("{$plugin}actions/refresh.php");
-			$login = elgg_get_logged_in_user_entity()->guid;
-            $friend = get_input('friend');
-			global $CONFIG;	
-			update_data("UPDATE {$CONFIG->dbprefix}ohyes_chat SET view='1' WHERE(sender='{$friend}' AND reciever='{$login}')");
+           exit; //removed in 1.1 release; $arsalanshah;
 	     }
 		
 		 if($page[1] == 'removetab'){
