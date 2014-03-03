@@ -23,6 +23,8 @@ Contributors
 * Brian F - community.elgg.org @brianf
 * Michele - community.elgg @michele
 * Sathish - community.elgg @rubon
+* UK      - community.elgg
+* Mariano - (bug reporter)
 
 
 Prerequisites
