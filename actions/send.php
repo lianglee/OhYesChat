@@ -16,7 +16,8 @@ $sender = elgg_get_logged_in_user_entity()->guid;
 $icon = elgg_view("icon/default", array(
 														'entity' => get_user($sender), 
 														'size' => 'small',
-									));$SEND = new OhYesChat;
+									));
+$SEND = new OhYesChat;
 if($SEND->SendMessage($reciever, $message)){
    echo json_encode(array(
 					 'message' => 	elgg_view('ohyes/chat/message-item', array(
