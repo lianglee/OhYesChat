@@ -95,16 +95,29 @@ public static function countNewById($friend){
         return count(OhYesChat::Data($count, 'get'));
 }
 /**
+* Get new message {Object}
+*
+* @access system
+* @return {Object};
+*/
+public static function getNew($friend){
+		global $CONFIG;	
+	 	$user = elgg_get_logged_in_user_entity()->guid;
+		$count = "SELECT * FROM `{$CONFIG->dbprefix}ohyes_chat` 
+		          WHERE(reciever='{$user}' AND sender='{$friend}' AND view='0');";
+        return OhYesChat::Data($count, 'get');
+}
+/**
 * GeMessage
 *
 * @access system
 * @return return;
 */
-public static function getMessages($sender, $friend){
+public static function getMessages($sender, $friend, $limit = 'LIMIT 20'){
 		global $CONFIG;	
         $get = "SELECT * FROM {$CONFIG->dbprefix}ohyes_chat 
 		WHERE(sender='{$sender}' AND reciever='{$friend}' 
-		OR sender='{$friend}' AND reciever='$sender') ORDER BY mid DESC  LIMIT 20;";
+		OR sender='{$friend}' AND reciever='$sender') ORDER BY mid DESC {$limit};";
         return OhYesChat::Data($get, 'get');
 }
 /**
