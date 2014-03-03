@@ -96,6 +96,16 @@ OhYesChat.NotifHide = function(win){
  * @return {Object}
  */
 OhYesChat.TabOpen = function(id, div){
+            $('.ChatTab')
+                     .not("#OhYesChat-Tab-"+id)
+                     .css('width', '190px')
+                     .find('.Tab-Title')
+                     .hide();
+            
+            var tab = "#ohyeschat-window-"+id;
+            $(".ChatTab").not("#ohyeschat-window-"+id).find('.box').hide(); 
+
+            $(tab).css('width', '255px');
             $("#OhYesChat-Tab-"+id).show();
             $("#ohyeschat-window-"+id).find(".OhYesChat-Icon-Onine").hide();
             $("#ohyeschat-window-"+id).find('.box').show(); 
@@ -116,8 +126,10 @@ OhYesChat.TabOpen = function(id, div){
  * @return {Object}
  */
 OhYesChat.TabClose = function(id, div){
+            var tab = "#ohyeschat-window-"+id;
+            $(tab).css('width', '190px');
             $("#OhYesChat-Tab-"+id).hide();
-            $("#ohyeschat-window-"+id).find(".OhYesChat-Icon-Onine").show();
+            $("#ohyeschat-ustatus-"+id).show();
             $("#ohyeschat-window-"+id).find('.box').hide(); 
             
             open = 'OhYesChat.TabOpen('+id+',this);';
@@ -139,7 +151,7 @@ OhYesChat.FriendsHide = function(){
  * @return {Object}
  */
 OhYesChat.newTab = function(fid){
-        if($(".OhYesChat").children(".ChatTab").size() >= 2){
+        if($(".OhYesChat").children(".ChatTab").size() >= 3){
                alert('Please close one tab to add new');
                return false;
         }
@@ -149,16 +161,19 @@ OhYesChat.newTab = function(fid){
                      type: 'get',
                      success: function(data) { 
                              if($("#ohyeschat-window-" +fid).length == 0) { 
-		                           if($(".OhYesChat").children(".ChatTab").size() < 3){
-                                       $('.OhYesChat').append(data);
+		                           if($(".OhYesChat").children(".ChatTab").size() < 4){
+                                       $('.OhYesChat').append(data['tab']);
                                     } 
-                                  
+                                  if(data['messages']){
+                                       $('#ohyes-chat-data-messages-'+fid).append(data['messages']); 
+                                   }
                                    $("#ohyeschat-window-" +fid).find('.inner').click();
-
                                } 
                                else {
                                     $("#ohyeschat-window-" +fid).find('.inner').click();
                                }
+                                     var chattab = document.getElementById('ohyes-chat-data-messages-'+fid);
+                                     chattab.scrollTop = chattab.scrollHeight;
                              } 
                     });        
         } 
@@ -231,7 +246,7 @@ OhYesChat.Boot = function(){
                     });        
 };
 $(document).ready(function(){
-         setInterval(function(){OhYesChat.Boot()}, 3000);      
+         setInterval(function(){OhYesChat.Boot()}, 5000);      
 }); 
 
 /**
@@ -244,3 +259,13 @@ OhYesChat.playSound = function(){
 		document.getElementById('ohyes-chat-sound').play();
 };
 
+/**
+ * Move scroll to end of tab
+ *
+ * @todo: nil;
+ * @return {mp3}
+ */
+OhYesChat.scrollMove = function(fid){ 
+  var chattab = document.getElementById('ohyes-chat-data-messages-'+fid);
+  chattab.scrollTop = chattab.scrollHeight;
+};
