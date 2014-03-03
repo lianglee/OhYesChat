@@ -76,14 +76,15 @@
    font-weight: bold;
 }
 .OhYesChat-Tab-Text {
-   margin-left: 15px;
+   margin-left: 12px;
    font-weight: bold;
+   width: 157px;
 }
 .OhYesChat .ChatTab {
    display: block;
    bottom: 0px;
    cursor:pointer;
-   width: 255px;
+   width: 180px;
    float: right;
 }
 .OhYesChat .ChatTab .inner {
@@ -100,32 +101,36 @@
    margin-left: -6px;
 }
 .OhYesChat .ChatTab .inner .box input{
-   border-radius: 0px;
-   background: #FFF;
-   border: none;
-   width: 247px;
-   height: 27px;
-   margin-top: 1px;
+ border-radius: 0px;
+ background: none repeat scroll 0% 0% #FFF;
+ border: medium none;
+ width: 247px;
+ height: 28px;
+ margin-top: 1px;
+ position: absolute;
 }
 .OhYesChat .ChatTab .inner:hover {
    background: #FDFEFF;
 }
 .OhYesChat .data {
-  overflow: overlay;
+  overflow: auto;
   height: 245px;
   border-left: 1px solid #BAC0CD;
   border-right: 1px solid #BAC0CD;
 }
 .ohyeschat-new-message {
   float: right;
-  margin-right: 14px;
+  margin-top: 0px;
+  margin-right: 2px;
+  position: absolute;
+  margin-left: 147px;
   display:none;
 }
 .ohyeschat-new-message .text{
  font-weight: bold;
- margin-left: -17px;
+ margin-left: -18px;
  margin-top: -5px;
- color:#fff;
+ color: #FFF;
 }
 .OhYesChat-Inner-Text {
    margin-left: 20px;
@@ -140,9 +145,35 @@
   position: fixed;
   height: 268px;
 }
+.friends-list .data {
+ overflow: auto;
+ height: 245px;
+ border-left: 1px solid #CCC;
+ border-right: 1px solid #CCC;
+}
+#chat-count-message {
+ margin-top:-20px;
+ display:none;
+}
+.friends-list-item {
+ margin: 5px 5px 5px 5px;
+}
+.friends-list-item .icon{
+display: inline-table;
+}
 .friends-list-item:hover{
 	background:#eee;
 }
+.friends-list-item .name{
+margin-top: -25px;
+margin-left: 33px;
+}
+.friends-list-item .OhYesChat-Icon-Onine{
+  float: right;
+  margin-right: 4px;
+  margin-top:-17px;
+}
+
 .Tab-Title {
   background: #fff;
   width: 248px;
@@ -189,6 +220,10 @@
    border: 1px solid #CCC;
    background: #F2F3F5;
 }
+.notification-window .data {
+ overflow: overlay;
+ height: 245px;
+}
 .friends-list-item:hover{
 	background:#eee;
 }
@@ -203,7 +238,7 @@
 }
 .OhYesChat-Icon-Onine{
   background:url("<?php echo elgg_get_site_url();?>mod/OhYesChat/images/online.png") no-repeat;
-  width8px;
+  width:9px;
   height:14px
 }
 .OhYesChat-Icon-Notification{
