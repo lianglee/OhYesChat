@@ -10,7 +10,8 @@
 */ 
  $friend = $vars['entity'];
 ?>
- <div class="friends-list-item" style="margin: 5px 5px 5px 5px;" onClick="OhYesChat.newTab(<?php echo $friend->guid;?>);"> 
-                  <div class="icon" style="display: inline-table;"> <?php echo $vars['icon'];?></div>
-                  <div class="name" style="display: inline-table;margin-top: -10px;"><?php echo OhYesChat::sttl($friend->name, 20);?></div>  
-                </div>
+ <div class="friends-list-item" onClick="OhYesChat.newTab(<?php echo $friend->guid;?>);"> 
+                  <div class="icon"> <?php echo $vars['icon'];?></div>
+                  <div class="name"><?php echo OhYesChat::sttl($friend->name, 20);?></div> 
+                  <div class="OhYesChat-Icon-Onine"></div> 
+    </div>
