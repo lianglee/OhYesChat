@@ -58,6 +58,8 @@ public static function actions(){
 * @return return;
 */
 public static function Data($query, $type){
+    global $CONFIG;	
+	$query = str_replace('prefixes_', $CONFIG->dbprefix, $query);
 	if(!empty($query) && $type == 'get'){
 	  return get_data($query);	
 	}
@@ -227,5 +229,27 @@ public function Setup(){
 			return FALSE;
     }	
 }
-
+/**
+* Replace icons
+*
+* @access system
+* @return message;
+*/
+public static function replaceIcon($message){
+	$icon = elgg_get_site_url().'mod/OhYesChat/images/emoticons/';
+ 	$icons = str_replace(array(
+						  ':(', 
+						  ':)', 
+						  '=D',
+						  ';)'), array(
+						  "<img src='{$icon}ohyeschat-sad.gif'/>",
+						  "<img src='{$icon}ohyeschat-smile.gif '/>",
+						  "<img src='{$icon}ohyeschat-happy.gif '/>",
+						  "<img src='{$icon}ohyeschat-wink.gif '/>",
+								 ),
+	                            $message
+	                             );
+	return $icons;							 
+	
+}
 }//class
