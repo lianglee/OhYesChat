@@ -104,7 +104,7 @@ $.each(OhYesChatData['active_friends'], function(key, data){
 $.each(OhYesChatData['tab_messages'], function(key, data){
    $(document).ready(function(){						  
             if($('.OhYesChat').find('#ohyeschat-window-'+data['fid'])){
-                 $('#ohyeschat-window-'+data['fid']).find('.data').append(data['message']);
+                 $('#ohyeschat-window-'+data['fid']).find('.data').append(OhYesChat.replaceEmoticons(data['message']));
                       if(data['total'] > 0){
                                $('#ohyeschat-window-'+data['fid'])
                                      .find('.ohyeschat-new-message')
