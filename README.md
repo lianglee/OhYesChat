@@ -10,7 +10,7 @@ This before you use it in your production website first test it on local server 
 * Automatic open a new windows on one end if message recieve;
 
 
-Tested on Chrome and work fine, there is little css problem on firefox and safari if anyone knows the fix he/she is welcome to send us a fix on Github.
+If anyone found bugs and knows the fix he/she is welcome to send us a fix on Github.
 
 If you like this plugin do what ever you want lol and if you don't like it please don't use it! ^_^
 
@@ -25,6 +25,7 @@ Contributors
 * Sathish - community.elgg @rubon
 * UK      - community.elgg
 * Mariano - (bug reporter)
+* Brett - community.elgg @brett.profitt
 
 
 Prerequisites
