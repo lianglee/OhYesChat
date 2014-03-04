@@ -36,7 +36,7 @@
 									));			  
 			  $user_msgs[] = elgg_view('ohyes/chat/message-item', array(
 																			   'icon' => $icon,
-																			   'message' => $umessages->message
+																			   'message' => OhYesChat::replaceIcon($umessages->message)
 																			   ));	
 			  }
 			   echo implode('', $user_msgs);
