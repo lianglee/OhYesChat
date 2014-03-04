@@ -263,9 +263,31 @@ OhYesChat.playSound = function(){
  * Move scroll to end of tab
  *
  * @todo: nil;
- * @return {mp3}
+ * @return null;
  */
 OhYesChat.scrollMove = function(fid){ 
   var chattab = document.getElementById('ohyes-chat-data-messages-'+fid);
   chattab.scrollTop = chattab.scrollHeight;
+};
+/**
+ * Register a url for icons
+ *
+ * @todo: nil;
+ * @return  {Url}
+ */
+OhYesChat.emoticons = function(icon){
+return "<img src='"+elgg.get_site_url()+"mod/OhYesChat/images/emoticons/ohyeschat-"+icon+".gif' />";
+};
+/**
+ * Replace icons
+ *
+ * @params: message = message of user;
+ * @return  {Url}
+ */
+OhYesChat.replaceEmoticons = function(messages){
+   var message = messages.replace(':(', OhYesChat.emoticons('sad'))
+                           .replace(':)', OhYesChat.emoticons('smile'))
+                           .replace('=D', OhYesChat.emoticons('happy'))
+                           .replace(";)", OhYesChat.emoticons('wink'));
+   return message;                        
 };

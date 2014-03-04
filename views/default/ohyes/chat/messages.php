@@ -10,7 +10,7 @@
 */ 
 
 $user = elgg_get_logged_in_user_entity()->guid;
-$get = "SELECT * FROM elgg_ohyes_chat WHERE(reciever='$user' AND view='0')";
+$get = "SELECT * FROM prefixes_ohyes_chat WHERE(reciever='$user' AND view='0')";
 $messages = OhYesChat::Data($get, 'get');
 foreach ($messages  as $friend){
 $friend = get_user($friend->sender);
