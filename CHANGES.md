@@ -1,10 +1,11 @@
 
-OhYesChat 1.2-development
+OhYesChat 1.2
 
 BugFixes:
 
 * Conditionally extending views will break during caching #2.
 * Make use of Elgg's Autoloader Class. #1.
+* Added four emoticons #5.
 
 OhYesChat 1.1 
 
