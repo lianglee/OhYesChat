@@ -202,7 +202,7 @@ margin-left: 33px;
   color: #FFF;
   margin-top: 2px;
   font-size: 12px;
-  cursor:pointer
+  cursor:pointer;
 }
 .OhYesChat-Titles:hover {
 	background:#8395BB;
@@ -239,12 +239,12 @@ margin-left: 33px;
 .OhYesChat-Icon-Onine{
   background:url("<?php echo elgg_get_site_url();?>mod/OhYesChat/images/online.png") no-repeat;
   width:9px;
-  height:14px
+  height:14px;
 }
 .OhYesChat-Icon-Notification{
   background:url("<?php echo elgg_get_site_url();?>mod/OhYesChat/images/notification.png") no-repeat;
   width13px;
-  height:13px
+  height:13px;
 }
 .ohyes-chat-loading {
   padding: 105px;
@@ -252,11 +252,11 @@ margin-left: 33px;
 .OhYesChat-Icon-Loading {
   background:url("<?php echo elgg_get_site_url();?>mod/OhYesChat/images/loading.gif") no-repeat;
   width32px;
-  height:32px
+  height:32px;
 }
 
 .OhYesChat-Icon-NewMessage {
   background:url("<?php echo elgg_get_site_url();?>mod/OhYesChat/images/new.png") no-repeat;
   width:16px;
-  height:16px
+  height:16px;
 }
