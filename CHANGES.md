@@ -1,3 +1,14 @@
+OhYesChat 1.3
+
+BugFixes:
+
+* Scroll didn't move down if new message recieve #8.
+* Total message in tab broken in firefox #6.
+* Replace HTML entities to avoid XSS attacks.
+
+Enhancements:
+* Open a windows on other end if new message recieve. #7.
+* In notification merge friend message with one row (x messages into one message)
 
 OhYesChat 1.2
 
