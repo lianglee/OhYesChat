@@ -1,14 +1,9 @@
-OhYesChat [1.0]
+OhYesChat [1.3]
 ================
 
 OhYesChat is behave much like facebook chat. The idea is by Michele and plugin is developed with the help of of my wife.
 
 This before you use it in your production website first test it on local server and do backup first.
-
-@things left:
-
-* Automatic open a new windows on one end if message recieve;
-
 
 If anyone found bugs and knows the fix he/she is welcome to send us a fix on Github.
 
