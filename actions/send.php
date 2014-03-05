@@ -10,7 +10,7 @@
  */ 
 
 header('Content-Type: application/json'); 
-$message = get_input('message');
+$message = OhYesChat::messageValidate(get_input('message'));
 $reciever = get_input('friend');
 $sender = elgg_get_logged_in_user_entity()->guid;
 $icon = elgg_view("icon/default", array(
