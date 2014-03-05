@@ -28,6 +28,7 @@
             $owner = elgg_get_logged_in_user_entity();
 			$online = OhYesChat::countOnline($owner);
 			$total_notifications = OhYesChat::countNew();
+			$new_all = OhYesChat::getNewAll(array('sender'));
 			$active_chat =  $_SESSION['ohyes_chat'];
 			foreach($active_chat as $friend){
 				$message = OhYesChat::getNew($friend);
@@ -69,11 +70,11 @@
 											  ),
 							 'active_friends' => $construct_active,
 							 'tab_messages' => $new_messages,
+							 'all_new' => $new_all,
 							 'sound' => $sound,
 							 ));
 			echo ";";
 ?>
-
 /**
  * Merge user data to chat
  * @param;
@@ -88,19 +89,37 @@ if(OhYesChatData['total']['notifications'] == 0){
 if(OhYesChatData['total']['notifications'] !== 0){
     $('#chat-count-message').show().html(OhYesChatData['total']['notifications']);
 }
-
+/**
+ * Playsound
+ *
+ * @required: OhYesChatData['sound'];
+ * @return  {msg.sound}
+ */
 if(OhYesChatData['sound'] !== 0){
   $('.ohyes-chat-play').html(OhYesChatData['sound']);
-} 
-else {
+} else {
  $('.ohyes-chat-play').html('');
 }
-
+/**
+ * Update satatus of friend
+ *
+ * @required: OhYesChatData['active_friends'];
+ * @return  {attr.status}
+ */
+if(OhYesChatData['active_friends']){
 $.each(OhYesChatData['active_friends'], function(key, data){
       $(document).ready(function(){		
                $('#ohyeschat-ustatus-'+key).attr('class', data['status']);
      }); 		 
 });
+}
+/**
+ * Update tab message
+ *
+ * @required: OhYesChatData['tab_messages'];
+ * @return  {append.message}
+ */
+if(OhYesChatData['tab_messages']){
 $.each(OhYesChatData['tab_messages'], function(key, data){
    $(document).ready(function(){						  
             if($('.OhYesChat').find('#ohyeschat-window-'+data['fid'])){
@@ -118,3 +137,21 @@ $.each(OhYesChatData['tab_messages'], function(key, data){
             }
      }); 		 
 });
+}
+/**
+ * Open a new tab if message recieve
+ *
+ * @required: OhYesChatData['all_new'];
+ * @return  {new.tab}
+ */
+if(OhYesChatData['all_new']){
+$.each(OhYesChatData['all_new'], function(key, data){
+   $(document).ready(function(){
+	  if($(".OhYesChat").children(".ChatTab").size() < 4){   						  
+         OhYesChat.newTab(data['sender']);
+         OhYesChat.playSound();
+         OhYesChat.scrollMove(data['sender']);
+        }
+     });     
+});
+}
