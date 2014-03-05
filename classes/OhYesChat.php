@@ -110,6 +110,23 @@ public static function getNew($friend){
         return OhYesChat::Data($count, 'get');
 }
 /**
+* Get new message {Object}
+*
+* @access system
+* @return {Object};
+*/
+public static function getNewAll($params = array()){
+		global $CONFIG;	
+		if(empty($params)){
+		 $params = array('sender', 'message');	
+		}
+		$params = implode(',' , $params);
+	 	$user = elgg_get_logged_in_user_entity()->guid;
+		$count = "SELECT $params FROM `{$CONFIG->dbprefix}ohyes_chat` 
+		          WHERE(reciever='{$user}' AND view='0');";
+        return OhYesChat::Data($count, 'get');
+}
+/**
 * GeMessage
 *
 * @access system
@@ -252,4 +269,14 @@ public static function replaceIcon($message){
 	return $icons;							 
 	
 }
+/**
+* Disable XSS attack
+*
+* @access system
+* @return message;
+*/
+public static function messageValidate($message){
+  return htmlentities($message,  ENT_QUOTES);	
+}
+
 }//class
