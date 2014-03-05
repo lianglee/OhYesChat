@@ -11,19 +11,19 @@
  OhYesChat
 *****************************/
 .OhYesChat{
- border-bottom: 0;
- bottom: 0px;
- left: 15px;
- display: block;
- font-family: "Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
- font-size: 11px;
- height: 29px;
- position: fixed;
- text-align: left;
- z-index: 1028;
- margin-top: 8px;
- width:1000px;
- left:15%;
+   border-bottom: 0;
+   bottom: 0px;
+   left: 15px;
+   display: block;
+   font-family: "Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif;
+   font-size: 11px;
+   height: 29px;
+   position: fixed;
+   text-align: left;
+   z-index: 1028;
+   margin-top: 8px;
+   width:1000px;
+   left:15%;
 }
 .OhYesChat .ChatBar {
    display: block;
@@ -127,10 +127,11 @@
   display:none;
 }
 .ohyeschat-new-message .text{
- font-weight: bold;
- margin-left: -18px;
- margin-top: -5px;
- color: #FFF;
+  font-weight: bold;
+  margin-left: 2px;
+  margin-top: -23px;
+  color: #fff;
+  position: absolute;
 }
 .OhYesChat-Inner-Text {
    margin-left: 20px;
@@ -164,9 +165,9 @@ display: inline-table;
 .friends-list-item:hover{
 	background:#eee;
 }
-.friends-list-item .name{
-margin-top: -25px;
-margin-left: 33px;
+.friends-list-item .name{ 
+ margin-top: -25px;
+ margin-left: 33px;
 }
 .friends-list-item .OhYesChat-Icon-Onine{
   float: right;
@@ -232,7 +233,7 @@ margin-left: 33px;
  OhYesChat Icons
 *****************************/
 .OhYesChat-Icon-UserOnine {
-  background:url("<?php echo elgg_get_site_url();?>mod/OhYesChat/images/useronline.png") no-repeat;
+   background:url("<?php echo elgg_get_site_url();?>mod/OhYesChat/images/useronline.png") no-repeat;
    width16px;
    height:14px;
 }
