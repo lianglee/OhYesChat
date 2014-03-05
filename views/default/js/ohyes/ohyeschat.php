@@ -117,6 +117,7 @@ OhYesChat.TabOpen = function(id, div){
             
             $('.ohyeschat-new-message').hide();
             $('.ohyeschat-new-message').find('.text').html('');
+            OhYesChat.scrollMove(id);
 };
 /**
  * Close a tab
@@ -194,12 +195,11 @@ $(function(){
                           type: 'post',
                           data: data,
                           success: function(fetch) { 
-                                   $('#ohyeschat-window-'+form).find('.data').append(fetch['message']);
+                                   $('#ohyeschat-window-'+form).find('.data').append(OhYesChat.replaceEmoticons(fetch['message']));
                                    $('#ohyeschat-form-'+form).find("#mbox").attr('value', '');
-                                   	 var tab = form;
-						             OhYesChat.RefeshMessages(tab);
-					                 var chattab = document.getElementById('ohyes-chat-data-messages-'+tab);
-                                     chattab.scrollTop = chattab.scrollHeight;
+                                   var tab = form;
+						           OhYesChat.RefeshMessages(tab);
+					               OhYesChat.scrollMove(tab);
                              } 
                     });        
            }); 
@@ -268,6 +268,7 @@ OhYesChat.playSound = function(){
 OhYesChat.scrollMove = function(fid){ 
   var chattab = document.getElementById('ohyes-chat-data-messages-'+fid);
   chattab.scrollTop = chattab.scrollHeight;
+  return chattab.scrollTop;
 };
 /**
  * Register a url for icons
@@ -282,7 +283,7 @@ return "<img src='"+elgg.get_site_url()+"mod/OhYesChat/images/emoticons/ohyescha
  * Replace icons
  *
  * @params: message = message of user;
- * @return  {Url}
+ * @return  {IMG}
  */
 OhYesChat.replaceEmoticons = function(messages){
    var message = messages.replace(':(', OhYesChat.emoticons('sad'))
