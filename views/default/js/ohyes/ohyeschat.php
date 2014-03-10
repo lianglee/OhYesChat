@@ -236,12 +236,13 @@ OhYesChat.RefeshMessages = function(form){
  */
 OhYesChat.Boot = function(){
     $.ajax({
-                          url: '<?php echo elgg_get_site_url();?>ohyeschat/bootsys/',
-                          type: 'post',
+                          url: '<?php echo elgg_get_site_url();?>ohyeschat/boot/ohyeschat.boot.js',
+                          dataType: "script",
                           success: function(fetch) {
-                                   scripts = fetch;
-                                   $('#ohyes-chat-js').html(scripts);
-                                 
+                                 if($('#ohyes-chat-js')){
+                                       $('#ohyes-chat-js').empty();
+                                 }
+                                  fetch;
                              } 
                     });        
 };
