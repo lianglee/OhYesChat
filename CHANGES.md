@@ -1,3 +1,9 @@
+OhYesChat 1.4
+
+BugFixes:
+
+* Chat boot DOM stops working #10.
+
 OhYesChat 1.3
 
 BugFixes:
