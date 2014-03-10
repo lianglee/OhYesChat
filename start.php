@@ -72,9 +72,6 @@ function ohyeschat_page_handler($page){
 	}
 	switch ($page[0]) {
 
-        case 'bootsys':
-		  echo elgg_view('ohyes/header/chat');
-		break;
 		case 'boot':
 		if($page[1] == 'ohyeschat.boot.js'){
 		    header('Content-Type: text/javascript');
@@ -95,9 +92,9 @@ function ohyeschat_page_handler($page){
 		case 'friends':
 		    header('Content-Type: application/json'); 
 		    echo json_encode(array(             
-				 'friends' =>  elgg_view('ohyes/chat/friends', array(
-									        'entity' => elgg_get_logged_in_user_entity()
-									       ))
+								 'friends' =>  elgg_view('ohyes/chat/friends', array(
+													   'entity' => elgg_get_logged_in_user_entity()
+													   ))
 								 ));
         break;
 
@@ -116,8 +113,8 @@ function ohyeschat_page_handler($page){
 			$messages = OhYesChat::getMessages($login, $page[1]);
 			foreach(array_reverse($messages) as $umessages){
 			  $icon = elgg_view("icon/default", array(
-								'entity' => get_user($umessages->sender), 
-								'size' => 'small',
+														'entity' => get_user($umessages->sender), 
+														'size' => 'small',
 									));	
 			  $user_msgs[] = elgg_view('ohyes/chat/message-item', array(
 																			   'icon' => $icon,
@@ -125,8 +122,8 @@ function ohyeschat_page_handler($page){
 																			   ));	
 			}
 		    $tab =  elgg_view('ohyes/chat/selectfriend', array(
-									 'friend' => $friend,
-								    ));
+													   'friend' => $friend,
+													   ));
 			$messages = implode('', $user_msgs);
 			
 			echo json_encode(array(
