@@ -1,3 +1,9 @@
+OhYesChat 1.5
+
+BugFixes:
+* Chat names disappear when open two windows.
+* CSS Changes.
+
 OhYesChat 1.4
 
 BugFixes:
