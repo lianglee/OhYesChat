@@ -96,7 +96,7 @@ OhYesChat.NotifHide = function(win){
  * @return {Object}
  */
 OhYesChat.TabOpen = function(id, div){
-            $('.ChatTab')
+       $('.ChatTab')
                      .not("#OhYesChat-Tab-"+id)
                      .css('width', '190px')
                      .find('.Tab-Title')
@@ -104,7 +104,8 @@ OhYesChat.TabOpen = function(id, div){
             
             var tab = "#ohyeschat-window-"+id;
             $(".ChatTab").not("#ohyeschat-window-"+id).find('.box').hide(); 
-
+            $(".ChatTab").not("#OhYesChat-Tab-"+id).find('.ohyeschat-uinfo').show(); 
+            
             $(tab).css('width', '255px');
             $("#OhYesChat-Tab-"+id).show();
             $("#ohyeschat-window-"+id).find(".OhYesChat-Icon-Onine").hide();
