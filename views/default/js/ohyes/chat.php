@@ -75,6 +75,7 @@
 							 ));
 			echo ";";
 ?>
+
 /**
  * Merge user data to chat
  * @param;
@@ -109,7 +110,7 @@ if(OhYesChatData['sound'] !== 0){
 if(OhYesChatData['active_friends']){
 $.each(OhYesChatData['active_friends'], function(key, data){
       $(document).ready(function(){		
-               $('#ohyeschat-ustatus-'+key).attr('class', data['status']);
+               $('#ohyeschat-ustatus-'+key).attr('class', data['status']+' ohyeschat-uinfo');
      }); 		 
 });
 }
