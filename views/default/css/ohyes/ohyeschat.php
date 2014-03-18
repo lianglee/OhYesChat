@@ -106,7 +106,8 @@
  border: medium none;
  width: 247px;
  height: 28px;
- margin-top: 1px;
+ z-index: 1;
+ border-top: 1px solid #CCC;
  position: absolute;
 }
 .OhYesChat .ChatTab .inner:hover {
@@ -179,7 +180,7 @@ display: inline-table;
   background: #fff;
   width: 248px;
   min-height: 268px;
-  margin-top: -269px;
+  margin-top: -268px;
   margin-left: 5px;
   position: fixed;
   height: 268px;
