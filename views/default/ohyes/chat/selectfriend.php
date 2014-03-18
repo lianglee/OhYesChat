@@ -57,7 +57,7 @@
                               <div class="OhYesChat-Icon-NewMessage" style="display:inline-table;"></div>
                               <div class="text"  style="display:inline-table;"></div>
                         </div>     
-            <div class="<?php echo OhYesChat::getStatusClass($vars['friend']['guid']);?>" id="ohyeschat-ustatus-<?php echo $vars['friend']['guid'];?>">
+            <div class="<?php echo OhYesChat::getStatusClass($vars['friend']['guid']);?> ohyeschat-uinfo" id="ohyeschat-ustatus-<?php echo $vars['friend']['guid'];?>">
                         <div class="OhYesChat-Tab-Text" style="display:inline-table;"><?php echo OhYesChat::sttl($vars['friend']['name'], 17);?></div>
             </div> 
           </div>
