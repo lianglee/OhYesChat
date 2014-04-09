@@ -28,7 +28,7 @@ var OhYesChat = OhYesChat ||{};
 OhYesChat.FriendsShow = function(){
     $(".friends-list").show();
     $('#OhYesChat').attr('onclick', 'OhYesChat.FriendsHide();');
-    $('.friends-list').find('.data').html('<div class="ohyes-chat-loading" style="padding:80px;"><div class="OhYesChat-Icon-Loading"></div></div>');       
+    $('.friends-list').find('.data').html('<div class="ohyes-chat-loading" style="padding:79px;"><div class="OhYesChat-Icon-Loading"></div></div>');       
    	$.ajax({
         url: '<?php echo elgg_get_site_url();?>ohyeschat/friends',
         type: 'get',
@@ -46,7 +46,8 @@ OhYesChat.FriendsShow = function(){
 OhYesChat.TabUnlink = function(div){
                 $.ajax({
                           url: '<?php echo elgg_get_site_url();?>ohyeschat/action/removetab/'+div,
-                          type: 'post',
+                          type: 'get',
+                          async: true,
                           success: function(fetch) { 
                                      if(fetch == 'removed'){
                                         $('#ohyeschat-window-'+div).remove();
@@ -67,6 +68,7 @@ OhYesChat.NotifShow = function(win){
              $.ajax({
                           url: '<?php echo elgg_get_site_url();?>ohyeschat/notif',
                           type: 'post',
+                          async: true,
                           success: function(fetch) { 
                                    $('.ChatNotification').find('.data').html(fetch['messages']);
                                    if(fetch['count'] !== '' ){
@@ -83,10 +85,14 @@ OhYesChat.NotifShow = function(win){
  *
  * @return NULL;
  */
-OhYesChat.NotifHide = function(win){
+OhYesChat.NotifHide = function(win, args){
       $('.notification-window').hide();
-      $(win).attr('onclick', 'OhYesChat.NotifShow(this);');
-
+      if(args == 1){
+       $('.ChatNotification').find('.inner').attr('onclick', 'OhYesChat.NotifShow(this);');
+      }
+      if(args !== 1){
+        $(win).attr('onclick', 'OhYesChat.NotifShow(this);');
+      }
 }
 /**
  * Open a tab
@@ -96,7 +102,7 @@ OhYesChat.NotifHide = function(win){
  * @return {Object}
  */
 OhYesChat.TabOpen = function(id, div){
-       $('.ChatTab')
+            $('.ChatTab')
                      .not("#OhYesChat-Tab-"+id)
                      .css('width', '190px')
                      .find('.Tab-Title')
@@ -160,7 +166,8 @@ OhYesChat.newTab = function(fid){
         if(fid){
                   	$.ajax({
                      url: '<?php echo elgg_get_site_url();?>ohyeschat/newtab/'+fid,
-                     type: 'get',
+                     type: 'post',
+                     async: true,
                      success: function(data) { 
                              if($("#ohyeschat-window-" +fid).length == 0) { 
 		                           if($(".OhYesChat").children(".ChatTab").size() < 4){
@@ -190,44 +197,25 @@ OhYesChat.Form = function(form){
 $(function(){
            $('#ohyeschat-form-'+form).submit(function(e){
 	          e.preventDefault(); 
+                      $('#ohyeschat-window-'+form).find("#mbox").hide();
+                      $('#ohyeschat-window-'+form).find(".ohyeschat-message-sending").show();
                       data = $(this).serialize();
                        $.ajax({
                           url: '<?php echo elgg_get_site_url();?>ohyeschat/action/send',
                           type: 'post',
+                          async: true,
                           data: data,
                           success: function(fetch) { 
+                                   $('#ohyeschat-window-'+form).find("#mbox").show();
+                                   $('#ohyeschat-window-'+form).find(".ohyeschat-message-sending").hide();
                                    $('#ohyeschat-window-'+form).find('.data').append(OhYesChat.replaceEmoticons(fetch['message']));
                                    $('#ohyeschat-form-'+form).find("#mbox").attr('value', '');
                                    var tab = form;
-						           OhYesChat.RefeshMessages(tab);
 					               OhYesChat.scrollMove(tab);
                              } 
                     });        
            }); 
        }); 
-};
-/**
- * Refesh messages in tab
- * @param form = id of form;
- *
- * @todo: why refresh entrie div? we should only append message if success
- * @return {Object}
- */
-
-OhYesChat.RefeshMessages = function(form){
-                       $.ajax({
-                          url: '<?php echo elgg_get_site_url();?>ohyeschat/action/refresh?friend='+form,
-                          type: 'post',
-                          success: function(fetch) { 
-                                   $('#ohyeschat-window-'+form).find('.data').html(fetch['message']);
-                                   $('#ohyeschat-ustatus-'+form).attr('class', fetch['status']);
-                                   if(fetch['count'] > 0){
-                                     $('.ohyeschat-new-message').css('display', 'inline-block');
-                                     $('.ohyeschat-new-message').find('.text').html(fetch['count']);
-                                   }
-                                 
-                             } 
-                    });        
 };
 /**
  * Boot OhYesChat
@@ -237,18 +225,20 @@ OhYesChat.RefeshMessages = function(form){
  */
 OhYesChat.Boot = function(){
     $.ajax({
-                          url: '<?php echo elgg_get_site_url();?>ohyeschat/boot/ohyeschat.boot.js',
-                          dataType: "script",
-                          success: function(fetch) {
-                                 if($('#ohyes-chat-js')){
-                                       $('#ohyes-chat-js').empty();
-                                 }
-                                  fetch;
-                             } 
+             url: '<?php echo elgg_get_site_url();?>ohyeschat/boot/ohyeschat.boot.js',
+             dataType: "script",
+             async: true,
+             success: function(fetch) {
+                        if($('#ohyes-chat-js')){
+                             $('#ohyes-chat-js').empty();
+                        }
+                             fetch;
+                    } 
                     });        
 };
 $(document).ready(function(){
-         setInterval(function(){OhYesChat.Boot()}, 5000);      
+         setInterval(function(){OhYesChat.Boot()}, 5000);     
+         OhYesChat.scrollMove('expand'); 
 }); 
 
 /**
@@ -289,8 +279,78 @@ return "<img src='"+elgg.get_site_url()+"mod/OhYesChat/images/emoticons/ohyescha
  */
 OhYesChat.replaceEmoticons = function(messages){
    var message = messages.replace(':(', OhYesChat.emoticons('sad'))
-                           .replace(':)', OhYesChat.emoticons('smile'))
-                           .replace('=D', OhYesChat.emoticons('happy'))
-                           .replace(";)", OhYesChat.emoticons('wink'));
+			 .replace(':)', OhYesChat.emoticons('smile'))
+			 .replace('=D', OhYesChat.emoticons('happy'))
+			 .replace(';)', OhYesChat.emoticons('wink'))
+			 .replace(':p', OhYesChat.emoticons('tongue'))
+			 .replace('8|', OhYesChat.emoticons('sunglasses'))
+			 .replace('o.O', OhYesChat.emoticons('confused'))
+			 .replace(':O', OhYesChat.emoticons('gasp'))
+			 .replace(':*', OhYesChat.emoticons('kiss'))
+			 .replace('a:', OhYesChat.emoticons('angel'))
+			 .replace(':h:', OhYesChat.emoticons('heart'))
+			 .replace('3:|', OhYesChat.emoticons('devil'))
+			 .replace('u:', OhYesChat.emoticons('upset'))
+			 .replace(':v', OhYesChat.emoticons('pacman'))
+			 .replace('g:', OhYesChat.emoticons('grumpy'))
+			 .replace('8)', OhYesChat.emoticons('glasses'))
+			 .replace('c:', OhYesChat.emoticons('cry'));
+					   
    return message;                        
+};
+/**
+ * Close smilies container
+ *
+ * @params: uid = form id;
+ */
+OhYesChat.CloseSmilies = function(uid){
+       $('#ohyes-smiles-u'+uid).slideUp();
+       $('#ohyeschat-window-'+uid)
+            .find('.OhYesChat-Icon-Smilies')
+            .attr('onclick', 'OhYesChat.ShowSmilies('+uid+');');
+};
+/**
+ * Show similies container
+ *
+ * @params: uid = form id;
+ */
+OhYesChat.ShowSmilies = function(uid){
+    $('#ohyes-smiles-u'+uid).html('Loading...');
+    $.ajax({
+             url: '<?php echo elgg_get_site_url();?>ohyeschat/smilies?uid='+uid,
+             type: 'get',
+             async: true,
+             success: function(load) {
+                          $('#ohyes-smiles-u'+uid).html(load);
+                      } 
+                    }); 
+           $('#ohyes-smiles-u'+uid).slideDown()
+           $('#ohyeschat-window-'+uid).find('.OhYesChat-Icon-Smilies').attr('onclick' , 'OhYesChat.CloseSmilies('+uid+');');
+           
+};
+/**
+ * Insert Smilies
+ *
+ * @params: tab = form id;
+ * @params: Code = smilie code;
+ */
+OhYesChat.InsertSmiles = function(code, tab){
+         var ChatTab = $('#ohyeschat-form-'+tab).find('#mbox');
+         return ChatTab.attr('value', ChatTab.val()+' '+code);
+};
+/**
+ * Forward request
+ *
+ * @params: url = url;
+ */
+OhYesChat.Forward = function(url){
+  window.location = '<?php echo elgg_get_site_url();?>'+url;
+};
+/**
+ * Expand Window
+ *
+ * @params: $friend = friend username;
+ */
+OhYesChat.Expand = function($friend){
+ return OhYesChat.Forward('chat/messages/'+$friend);
 };
