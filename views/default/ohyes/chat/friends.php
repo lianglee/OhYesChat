@@ -10,7 +10,7 @@
 */ 
 $friends = $vars['entity']->getFriends();
 foreach ($friends as $friend){
-		if ($friend->last_action > time() - 50) {		
+		if ($friend->last_action > time() - 10) {		
 				$icon = elgg_view("icon/default", array(
 														'entity' => get_user($friend->guid), 
 														'size' => 'tiny',
