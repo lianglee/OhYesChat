@@ -75,7 +75,6 @@
 							 ));
 			echo ";";
 ?>
-
 /**
  * Merge user data to chat
  * @param;
