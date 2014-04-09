@@ -288,10 +288,10 @@ public function Setup(){
 public static function loadIcons(){
  $icon = elgg_get_site_url().'mod/OhYesChat/images/emoticons/';
  $icons = array(
-			':(' =>	"<img src='{$icon}ohyeschat-sad.gif'/>",
-			':)' => "<img src='{$icon}ohyeschat-smile.gif '/>",
-			'=D' =>	"<img src='{$icon}ohyeschat-happy.gif '/>",
-			';)' =>	"<img src='{$icon}ohyeschat-wink.gif '/>",
+	    ':(' => "<img src='{$icon}ohyeschat-sad.gif'/>",
+	    ':)' => "<img src='{$icon}ohyeschat-smile.gif '/>",
+	    '=D' => "<img src='{$icon}ohyeschat-happy.gif '/>",
+	    ';)' => "<img src='{$icon}ohyeschat-wink.gif '/>",
             ':p' => "<img src='{$icon}ohyeschat-tongue.gif'/>",
             '8|' => "<img src='{$icon}ohyeschat-sunglasses.gif'/>",
             'o.O' => "<img src='{$icon}ohyeschat-confused.gif '/>",
@@ -300,8 +300,7 @@ public static function loadIcons(){
             'a:' => "<img src='{$icon}ohyeschat-angel.gif'/>",
             ':h:' => "<img src='{$icon}ohyeschat-heart.gif'/>",
             '3:|' => "<img src='{$icon}ohyeschat-devil.gif'/>",
-            
-			'u:' => "<img src='{$icon}ohyeschat-upset.gif'/>",
+	    'u:' => "<img src='{$icon}ohyeschat-upset.gif'/>",
             ':v' => "<img src='{$icon}ohyeschat-pacman.gif'/>",
             'g:' => "<img src='{$icon}ohyeschat-grumpy.gif'/>",
             '8)' => "<img src='{$icon}ohyeschat-glasses.gif'/>",
@@ -347,9 +346,9 @@ public static function messageValidate($message){
 public static function newModule($type, $title, $contents, $vars = array()){
    $contents = elgg_view("ohyes/chat/admin/modules/contents/{$contents}", $vars);
    return elgg_view("ohyes/chat/admin/modules/{$type}", array(
-													  'title' =>  $title,
-													  'contents' => $contents,
-													  ));	
+								 'title' =>  $title,
+								 'contents' => $contents,
+							));	
 }
 /**
 * Register a menu item
@@ -434,25 +433,25 @@ public static function RegisterMenus(){
    $menu = new OhYesChat;
    $url = elgg_get_site_url();
    $menu->register_menu_item('admin', array(
-											'text' => elgg_echo('ohyes:chat'),
-											'url' => "{$url}ohyeschat/admin"
-											));
+					'text' => elgg_echo('ohyes:chat'),
+					'url' => "{$url}ohyeschat/admin"
+					   ));
    $menu->register_menu_item('admin', array(
-											'text' => elgg_echo('ohyes:track:messages'),
-											'url' => "{$url}ohyeschat/admin/getuser"
-											));
+					'text' => elgg_echo('ohyes:track:messages'),
+					'url' => "{$url}ohyeschat/admin/getuser"
+					   ));
    $menu->register_menu_item('admin', array(
-											'text' => elgg_echo('ohyes:back:admin'),
-											'url' => "{$url}admin"
-											));
+					'text' => elgg_echo('ohyes:back:admin'),
+					'url' => "{$url}admin"
+				          ));
    $menu->register_menu_item('admin', array(
-											'text' => elgg_echo('ohyes:bug:report'),
-											'url' => "http://github.com/lianglee/OhYesChat/issues"
-											));
+					'text' => elgg_echo('ohyes:bug:report'),
+					'url' => "http://github.com/lianglee/OhYesChat/issues"
+				    	 ));
    $menu->register_menu_item('admin', array(
-											'text' => elgg_echo('ohyes:authors'),
-											'url' => "http://www.informatikon.com"
-											));	
+					'text' => elgg_echo('ohyes:authors'),
+					'url' => "http://www.informatikon.com"
+					 ));	
   elgg_register_menu_item('page', array(
 		'name' => 'ohyeschat',
 		'href' => 'ohyeschat/admin',
