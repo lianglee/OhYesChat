@@ -75,7 +75,13 @@ function OhYesChat(){
 function ohyeschat_page_handler($page){
 	$plugin = elgg_get_plugins_path().'OhYesChat/';
 	if(!isset($page[0])){
-		    $page[0] = 'friends';
+			if(elgg_is_admin_logged_in()){	
+		       $page[0] = 'admin';
+			} 
+			else {
+			 forward();	
+			}
+			
 	}
 	$user = elgg_get_logged_in_user_entity();
 	if(empty($user->username)){
@@ -83,6 +89,7 @@ function ohyeschat_page_handler($page){
 	}
 	switch ($page[0]) {
         case 'admin':
+	if(elgg_is_admin_logged_in()){	
 		   if(empty($page[1])){
 		 	include_once("{$plugin}pages/admin/dashboard.php");		
 		   } 
@@ -95,7 +102,7 @@ function ohyeschat_page_handler($page){
 			}
 			   
 		   }
-		   
+	}
 		break;
  		
 		case 'smilies':
