@@ -13,13 +13,14 @@ $online_users = '<span id="ohyes-chat-count">'.OhYesChat::countOnline(elgg_get_l
 ?>
 <div class="OhYesChat">
     <div class="ChatNotification">
-          <div class="inner" onClick="OhYesChat.NotifHide(this);">
+          <div class="inner" onClick="OhYesChat.NotifShow(this);">
               <div class="OhYesChat-Icon-Notification"></div>
               <div class="text" id="chat-count-message"></div>
           </div>
            <div class="notification-window" style="display:none;">
                <div class="OhYesChat-Titles">
-                   <div class="text"><?php echo elgg_echo('ohyes:chat:notification');?></div>
+                   <div class="OhYesChat-Inline-Table text"><?php echo elgg_echo('ohyes:chat:notification');?></div>
+                   <div class="OhYesChat-Inline-Table options"> <div class="item"  onClick="OhYesChat.NotifHide(this, 1);"> X </div></div>
                </div>
             <div class="data">
 			<?php   echo elgg_view('ohyes/chat/messages', array(
@@ -31,7 +32,8 @@ $online_users = '<span id="ohyes-chat-count">'.OhYesChat::countOnline(elgg_get_l
     <div class="ChatBar">
          <div class="friends-list" style="display:none;">
                <div class="OhYesChat-Titles"  onClick="OhYesChat.FriendsHide();">
-                   <div class="text"><?php echo elgg_echo('ohyes:chat');?></div>
+                   <div class="OhYesChat-Inline-Table text"><?php echo elgg_echo('ohyes:chat');?></div>
+                   <div class="OhYesChat-Inline-Table options"> <div class="item"  onClick="OhYesChat.NotifHide(this, 1);"> X </div></div>          
                </div>
             <div class="data">
 			<?php   echo elgg_view('ohyes/chat/friends', array(
