@@ -22,17 +22,24 @@ elgg_register_event_handler('init', 'system', 'OhYesChat');
 * @return null;
 */
 function OhYesChat(){
+   $plugin = elgg_get_plugins_path().'OhYesChat/';
    elgg_register_simplecache_view('css/ohyes/ohyeschat');
    $ohyescss = elgg_get_simplecache_url('css', 'ohyes/ohyeschat');
    elgg_register_css('ohyeschat.css', $ohyescss);
    
+   elgg_register_simplecache_view('css/ohyes/ohyeschat.admin');
+   $ohyescssadmin = elgg_get_simplecache_url('css', 'ohyes/ohyeschat.admin');
+   elgg_register_css('ohyeschat.admin.css', $ohyescssadmin);
+      
    elgg_register_simplecache_view('js/ohyes/ohyescha');
    $ohyesjs = elgg_get_simplecache_url('js', 'ohyes/ohyeschat');
    elgg_register_js('ohyeschat.js', $ohyesjs);
    
    if(elgg_is_logged_in()){
    elgg_register_page_handler('ohyeschat', 'ohyeschat_page_handler');
+   elgg_register_page_handler('chat', 'ohyeschat_page_handler');
    }
+   elgg_register_action('ohyes/chat/deletemssages', "{$plugin}actions/admin/deletemssages.php", 'admin');
    
    elgg_extend_view('page/elements/foot', 'ohyes/chat/bar');
    elgg_extend_view('page/elements/body', 'ohyes/header/chat', 1);
@@ -42,6 +49,10 @@ function OhYesChat(){
    OhYesChat::loadJs();
    
    run_function_once('ohyeschat_setup');
+   
+   
+   //register menu items
+   OhYesChat::RegisterMenus();
 }
 /**
  * OhYesChat Page Setup;
@@ -71,7 +82,40 @@ function ohyeschat_page_handler($page){
 	   return false;	
 	}
 	switch ($page[0]) {
-
+        case 'admin':
+		   if(empty($page[1])){
+		 	include_once("{$plugin}pages/admin/dashboard.php");		
+		   } 
+		   else {
+		    if($page[1] == 'track'){
+			 include_once("{$plugin}pages/admin/trackuser.php");		
+			}
+		   if($page[1] == 'getuser'){
+			 include_once("{$plugin}pages/admin/getuser.php");		
+			}
+			   
+		   }
+		   
+		break;
+ 		
+		case 'smilies':
+		 	echo elgg_view('ohyes/chat/smiles/similes', array(
+															  'tab' => get_input('uid')
+															  ));	
+		break;
+		case 'messages':
+		 	$user = $page[1];
+			if(!empty($user)){
+			 $var['user'] = get_user_by_username($user);
+			 $var['owner'] = elgg_get_logged_in_user_entity()->guid;
+			 $var['messages'] = array_reverse(OhYesChat::getMessages($var['user']->guid ,$var['owner']));
+			 $params['content'] = elgg_view('ohyes/chat/expend', $var);	
+			 $body = elgg_view_layout('one_sidebar', $params);
+	         echo elgg_view_page($params['title'], $body);
+				
+			}
+		break;
+        
 		case 'boot':
 		if($page[1] == 'ohyeschat.boot.js'){
 		    header('Content-Type: text/javascript');
@@ -118,7 +162,8 @@ function ohyeschat_page_handler($page){
 									));	
 			  $user_msgs[] = elgg_view('ohyes/chat/message-item', array(
 																			   'icon' => $icon,
-																			   'message' => OhYesChat::replaceIcon($umessages->message)
+																			   'message' => OhYesChat::replaceIcon($umessages->message),
+																			   'sender' => $umessages->sender,
 																			   ));	
 			}
 		    $tab =  elgg_view('ohyes/chat/selectfriend', array(
