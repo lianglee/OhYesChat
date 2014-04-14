@@ -29,3 +29,4 @@ Prerequisites
 * Elgg 1.8.18
 * What else you want?
 
+Copyright 2014 Informatikon Technologies informatikon.com
