@@ -24,6 +24,7 @@
    margin-top: 8px;
    width:1000px;
    left:15%;
+   color: #000;
 }
 .OhYesChat .ChatBar {
    display: block;
