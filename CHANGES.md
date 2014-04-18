@@ -1,3 +1,12 @@
+OhYesChat 2.1
+
+BUGFIXES:
+
+ * Chat break the mobile layout.
+ * 3rd party themes cause fon't color break.
+ * Language Error fixed.
+ * Chat now works for Portuguese and Arabic langauge.
+
 OhYesChat 2.0
 
 CHANGES:
