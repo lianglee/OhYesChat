@@ -1,4 +1,4 @@
-OhYesChat [2.0]
+OhYesChat [2.1]
 ================
 
 OhYesChat is behave much like facebook chat. The idea is by Michele and plugin is developed with the help of of my wife.
@@ -28,5 +28,11 @@ Prerequisites
 
 * Elgg 1.8.18
 * What else you want?
+
+Support
+========
+Need help please contact us on above link with reference number #EP4e1e.
+
+http://www.informatikon.com/contact/support
 
 Copyright 2014 Informatikon Technologies informatikon.com
