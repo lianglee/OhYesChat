@@ -187,20 +187,35 @@ public static function getMessages($sender, $friend, $limit = 'LIMIT 20'){
         return OhYesChat::Data($get, 'get');
 }
 /**
+* Get online friends
+*
+* @access system
+* @return return;
+*/
+public static function OnlineFriends($entity){
+$db_prefix = elgg_get_config('dbprefix');
+$time = time();
+$friend['relationship'] = 'friend';
+$friend['relationship_guid'] = $entity->guid;
+
+$friend['type'] = 'user';
+$friend['limit'] = false;
+
+$friend['joins'][] =  "join {$db_prefix}users_entity u on e.guid = u.guid";
+$friend['wheres'][] = "u.last_action > {$time} - 10";
+$friend['order_by'] = "u.last_action desc";
+
+$friends = elgg_get_entities_from_relationship($friend);	
+return $friends;	
+}
+/**
 * Count Online Friends
 *
 * @access system
 * @return return;
 */
 public static function countOnline($entity){
-$friends = $entity->getFriends();
-$online = 0;
-foreach ($friends as $friend){
-		if ($friend->last_action > time() - 10) {		
-				     $online++;
-			} 
-}
-return $online;
+   return count(OhYesChat::OnlineFriends($entity));
 }
 /**
 * Get friend status
@@ -466,7 +481,7 @@ public static function RegisterMenus(){
 					'text' => elgg_echo('ohyes:authors'),
 					'url' => "http://www.informatikon.com"
 					 ));	
-  elgg_register_menu_item('page', array(
+    elgg_register_menu_item('page', array(
 		'name' => 'ohyeschat',
 		'href' => 'ohyeschat/admin',
 		'text' => elgg_echo('ohyeschat'),
@@ -504,5 +519,19 @@ public function checkUpdate(){
 	    return  array('ohyeschat:new:version:latest', $OhYesChat->release);	
 	}
 }
-
+/**
+* Check News
+* @access admin
+* @return array;
+*/
+public function checkNews(){
+	$url = 'http://www.informatikon.com/api/repos/OhYesChat/news';
+     $data = file_get_contents($url);
+	if(empty($data)){
+	   return elgg_echo('ohyeschat:news:error');	
+	}
+	elseif(!empty($data)){
+	    return  $data;	
+	}
+}
 }//class
