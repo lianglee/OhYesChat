@@ -1,3 +1,16 @@
+OhYesChat 2.2
+(http://blog.informatikon.com/article/view/12/OhYesChat-2-2-Version-is-released )
+
+BUGFIXES:
+
+ * UI IMPROVED.
+ * Fixed someusers can't see friends online.
+ * Added support for mobile.
+
+Mobile:
+SEE Mobile.html
+
+
 OhYesChat 2.1
 
 BUGFIXES:
