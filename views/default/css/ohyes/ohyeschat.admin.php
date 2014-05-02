@@ -115,7 +115,7 @@ text-decoration: none;
 }
 .ohyeschat-admin-container input {
  padding: 14px;
-border: 1px solid #EEE;	
+ border: 1px solid #EEE;	
 }
 .track-user-msg {
 	text-align:center;
