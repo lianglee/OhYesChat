@@ -32,6 +32,9 @@ $english = array(
 	'module:title:chat:update' => 'OhYesChat Update',
 	'module:title:chat:latest:messages' => 'Latest Messages',
 	'module:title:chat:total:messages' => 'Total Messages',
+	'ohyeschat:mobile:menu' => 'Chat',
+	'ohyeschat:news' => 'News',
+	'ohyeschat:news:error' => 'Cannot get news',
 
 
  );
