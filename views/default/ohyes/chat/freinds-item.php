@@ -14,4 +14,4 @@
                   <div class="icon"> <?php echo $vars['icon'];?></div>
                   <div class="name"><?php echo OhYesChat::sttl($friend->name, 20);?></div> 
                   <div class="OhYesChat-Icon-Onine"></div> 
-    </div>
+ </div>
