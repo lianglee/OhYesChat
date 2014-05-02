@@ -112,6 +112,11 @@
  height: 28px;
  margin-top: 1px;
  position: absolute;
+ outline:none;
+ z-index:101;
+}
+.OhYesChat .ChatTab .inner .box input:focus{
+  outline:none;
 }
 .OhYesChat .ChatTab .inner:hover {
    background: #FDFEFF;
@@ -125,7 +130,7 @@
 }
 .ohyeschat-new-message {
   float: right;
-  margin-top: 0px;
+  margin-top: 1px;
   margin-right: 2px;
   position: absolute;
   margin-left: 147px;
@@ -165,6 +170,7 @@
 }
 .friends-list-item {
  margin: 5px 5px 5px 5px;
+ height:29px;
 }
 .friends-list-item .icon{
 display: inline-table;
@@ -381,7 +387,6 @@ box-shadow: 0 0 10px #EEE;
 .OhYesChat-Icon-Expend:hover{
   opacity:0.9;
 }
-
 
 
 
