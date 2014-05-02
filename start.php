@@ -52,7 +52,8 @@ function OhYesChat(){
    
    
    //register menu items
-   OhYesChat::RegisterMenus();
+    OhYesChat::RegisterMenus();
+	
 }
 /**
  * OhYesChat Page Setup;
@@ -206,8 +207,15 @@ function ohyeschat_page_handler($page){
 			        echo 'removed';
 		}
 		
-        break;
-	   
+        break;	  
+		case 'mobile':
+		    if (elgg_is_active_plugin('OhYesChat_Mobile') && OhYesChat::FromMobile()) {
+               elgg_trigger_plugin_hook('ohyeschat', 'mobile', $page);  
+             } 
+			 else {
+			  forward();	 
+			 }
+		break;
 	   default:
 			return false;
 	}
