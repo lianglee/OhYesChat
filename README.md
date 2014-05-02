@@ -1,4 +1,4 @@
-OhYesChat [2.1]
+OhYesChat [2.2]
 ================
 
 OhYesChat is behave much like facebook chat. The idea is by Michele and plugin is developed with the help of of my wife.
