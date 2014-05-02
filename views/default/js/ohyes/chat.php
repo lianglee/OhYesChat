@@ -108,9 +108,7 @@ if(OhYesChatData['sound'] !== 0){
  */
 if(OhYesChatData['active_friends']){
 $.each(OhYesChatData['active_friends'], function(key, data){
-      $(document).ready(function(){		
                $('#ohyeschat-ustatus-'+key).attr('class', data['status']+' ohyeschat-uinfo');
-     }); 		 
 });
 }
 /**
@@ -121,7 +119,6 @@ $.each(OhYesChatData['active_friends'], function(key, data){
  */
 if(OhYesChatData['tab_messages']){
 $.each(OhYesChatData['tab_messages'], function(key, data){
-   $(document).ready(function(){						  
             if($('.OhYesChat').find('#ohyeschat-window-'+data['fid'])){
                  $('#ohyeschat-window-'+data['fid']).find('.data').append(OhYesChat.replaceEmoticons(data['message']));
                       if(data['total'] > 0){
@@ -135,7 +132,6 @@ $.each(OhYesChatData['tab_messages'], function(key, data){
                        }
                  
             }
-     }); 		 
 });
 }
 /**
@@ -146,12 +142,10 @@ $.each(OhYesChatData['tab_messages'], function(key, data){
  */
 if(OhYesChatData['all_new']){
 $.each(OhYesChatData['all_new'], function(key, data){
-   $(document).ready(function(){
 	  if($(".OhYesChat").children(".ChatTab").size() < 4){   						  
          OhYesChat.newTab(data['sender']);
          OhYesChat.playSound();
          OhYesChat.scrollMove(data['sender']);
         }
-     });     
 });
 }
