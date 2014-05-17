@@ -29,6 +29,11 @@ Prerequisites
 * Elgg 1.8.18
 * What else you want?
 
+Mobile Chat
+=============
+
+Please see http://www.informatikon.com/article/view/23/ohyeschat-mobile-for-elgg
+
 Support
 ========
 Need help please contact us on above link with reference number #EP4e1e.
