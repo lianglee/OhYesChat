@@ -36,7 +36,10 @@
 			  $messages = OhYesChat::getMessages($login, $vars['friend']->guid); 
 			  foreach(array_reverse($messages) as $umessages){
 			  if($umessages->sender == elgg_get_logged_in_user_entity()->guid){
-				  $icon = '';
+				   $icon = elgg_view("icon/default", array(
+                                                                                'entity' => elgg_get_logged_in_user_entity(),
+                                                                                'size' => 'small',
+                                                                        ));
 			  } else {
 			  $icon = elgg_view("icon/default", array(
 														'entity' => get_user($umessages->sender), 
