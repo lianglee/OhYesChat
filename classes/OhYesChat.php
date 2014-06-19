@@ -202,7 +202,7 @@ $friend['type'] = 'user';
 $friend['limit'] = false;
 
 $friend['joins'][] =  "join {$db_prefix}users_entity u on e.guid = u.guid";
-$friend['wheres'][] = "u.last_action > {$time} - 10";
+$friend['wheres'][] = "u.last_action > {$time} - 600";
 $friend['order_by'] = "u.last_action desc";
 
 $friends = elgg_get_entities_from_relationship($friend);	
@@ -225,7 +225,7 @@ public static function countOnline($entity){
 */
 public static function userStatus($user){
 $friend = get_user($user); 
-   if($friend->last_action > time() - 10){
+   if($friend->last_action > time() - 600){
 		 return 'online';  
 	  } 
 	  else {
