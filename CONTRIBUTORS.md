@@ -4,16 +4,18 @@ Amy Lee ( My Wife )
 
 Andreas Johannes -  freudenschaft.de/Erdschrei_Aura/profile/Andreas 
 
-Michele - community.elgg @michele
+Michele -  https://community.elgg.org/profile/michele
 
-Brian F - community.elgg.org @brianf
+Brian F -  https://community.elgg.org/profile/brianf
 
-Michele - community.elgg @michele
+Michele -  https://community.elgg.org/profile/michele
 
-Sathish - community.elgg @rubon
+Sathish -  https://community.elgg.org/profile/rubon
 
 UK - community.elgg
 
 Mariano - (bug reporter)
 
-Brett - community.elgg @brett.profitt
+Brett - https://community.elgg.org/profile/brett.profitt
+
+Gerard Kanters - https://community.elgg.org/profile/gkanters
