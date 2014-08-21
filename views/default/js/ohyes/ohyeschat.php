@@ -116,10 +116,10 @@ OhYesChat.TabOpen = function(id, div){
             $("#OhYesChat-Tab-"+id).show();
             $("#ohyeschat-window-"+id).find(".OhYesChat-Icon-Onine").hide();
             $("#ohyeschat-window-"+id).find('.box').show(); 
-            close = 'OhYesChat.TabUnlink('+id+');';
+            var close = 'OhYesChat.TabUnlink('+id+');';
             $("#OhYesChat-Tab-"+id).find('.options').attr('onclick', close);
             
-            close = 'OhYesChat.TabClose('+id+', this);';
+            var close = 'OhYesChat.TabClose('+id+', this);';
             $("#OhYesChat-Tab-"+id).find('.OhYesChat-Titles').attr('onclick', close);
             
             $('.ohyeschat-new-message').hide();
