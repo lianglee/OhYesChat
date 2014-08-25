@@ -16,12 +16,10 @@ $mobile = get_input('mobile');
 
 $sender = elgg_get_logged_in_user_entity()->guid;
 $SEND = new OhYesChat;
-if($mobile == 'true'){
 $icon = elgg_view("icon/default", array(
 										'entity' => elgg_get_logged_in_user_entity(), 
 										'size' => 'small',
 									));	
-} else { $icon = '';}
 if($SEND->SendMessage($reciever, $message)){
    echo json_encode(array(
 					 'message' => 	elgg_view('ohyes/chat/message-item', array(
