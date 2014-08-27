@@ -35,7 +35,7 @@ elgg_load_css('ohyeschat.admin.css');
 <div class="ohyeschat-admin-container">
 <?php if($messages){ ?> 
   <div class="chat-system-message">
-      <?php echo $messages;?>
+      <?php echo  elgg_strip_tags($messages);?>
       <div class="system-message-close">
           <a href="<?php echo elgg_get_site_url();?>ohyeschat/admin">X</a>
       </div>
